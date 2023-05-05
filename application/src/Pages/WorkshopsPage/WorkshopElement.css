@@ -1,0 +1,49 @@
+.workshopComponentUN{
+    border: 3px solid rgb(61, 21, 94);
+    box-shadow: 0px 0px 6px rgba(53, 49, 49, 0.8);
+    margin-top: 100px;
+    margin-bottom: 60px;
+    margin-left: 100px;
+    width: 50%;
+}
+.workshopComponentDe{ 
+   
+   
+    margin-top: 300px;
+    margin-left: 100px;
+}
+
+.WorkshopElementName{
+    
+    font-size: 40px;
+    margin-top: 60px;
+    text-align: center;
+    color: #1f2aa1; /* Changes the text color */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 0px 0px 8px rgba(19, 62, 118, 0.4);
+    margin-bottom: 35px;
+   
+} 
+.title88{font-size: 30px;}
+
+form { 
+  margin-left: 200px;
+  margin-right: 300px;
+  margin-top: 50px;
+}
+
+.Lastt{
+  margin-left: 30px;
+}
+
+input::placeholder {
+  color: rgb(7, 117, 244);
+}
+
+#return-to-link {
+  margin-top: 15px;
+}
+  
+.workshopComponentUN {
+  padding: 10px;
+}

@@ -1,0 +1,57 @@
+
+
+.clubs-container {
+   display: flex;
+   width: 100%;
+   margin-top: 90px;
+}
+
+
+
+.styled-table {
+    border-collapse: separate;
+    margin: 25px 0;
+    font-size: 0.9em;
+    
+    min-width: 800px;
+    box-shadow: 0 0 20px rgba(226, 6, 6, 0.15);
+    
+}
+
+.styled-table thead tr {
+    font-family:fantasy;
+  
+     color:  #30326c;
+     font-size: 5.5em;
+}
+
+
+/*design des td et th */
+.styled-table th,
+.styled-table td {
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid rgb(27, 27, 28);
+}
+
+
+/*colonne 3.5*/
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #e3e2ed;
+}
+
+
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+ 
+}
+
+.club-photo {
+    border-radius: 55%;
+    width: 150px;
+    height: 120px;
+ 
+}

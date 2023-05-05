@@ -1,0 +1,29 @@
+.welcome-container {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 170px;
+  height: 150px;
+  width: 420px;
+}
+ul {
+  list-style: disc; /* Use disc bullets */
+  
+}
+ li {
+  font-size: 19px; /* Increases the font size */
+  color: #656897; /* Changes the text color */
+}
+.custom-bullets {
+  list-style-type: none;
+}
+
+.custom-bullets li::before {
+  content: "\2022"; /* Use a bullet point character */
+  color: rgb(52, 16, 208); /* Set the color of the bullet point */
+  font-size: 22px; /* Set the size of the bullet point */
+  margin-right: 10px; /* Add some spacing between the bullet point and the list item */
+}
+

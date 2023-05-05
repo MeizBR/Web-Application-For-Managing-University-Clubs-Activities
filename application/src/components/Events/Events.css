@@ -1,0 +1,35 @@
+#main {
+   
+    border-radius: 10px;
+    padding: 30px;
+  
+    margin-top: 40px;
+}
+.titre{
+    color: rgb(4, 25, 41);
+    margin-bottom: 30px;
+    font-family: none;
+}
+.events-container {
+    width: 70%;
+  
+    border-radius: 10px;
+}
+.carousel-inner{
+    width: 100%;
+}
+#title {
+  
+}
+.d-block_w-100{
+    width:1000px;
+    height: 500px;
+}
+.carousel-control-prev{
+    width: 90px;
+   background-color:  rgb(255, 255, 255);
+
+}
+.carousel-control-next{
+    width: 90px;
+    background-color:  rgb(255, 255, 255);}

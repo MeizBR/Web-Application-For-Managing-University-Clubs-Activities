@@ -1,0 +1,81 @@
+
+/*css pour toute la page workshop*/
+.page{
+    background-color:white;
+}
+.start{
+    margin-top: 50px;
+    padding-left: 100px;
+} 
+.Size{
+   height: 30px;
+   width: 20px;
+}
+/* css pour le titre de la page  */
+.workshops-container #title {
+
+    font-family: serif;
+    color:  black;
+   
+    margin-bottom: 20px;
+   
+
+ 
+}
+.custom-bullet1{
+    margin-top:30px;
+    padding-top: 8px;
+}
+  
+
+
+/*css pour la contenaire de chaque workshop */
+.workshops-container .workshop-item {
+    
+    margin-left: 35px;
+    margin-bottom: 40px;
+    padding-left: 15px;
+    border: 2px solid rgb(18, 15, 17);
+    box-shadow: 0 0 50px rgba(33, 9, 9, 0.15);
+    border-radius: 6px;
+    width: 90%;
+    height: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+/*css pour les element a l'interieur de la contenaire */
+.workshops-container .workshop-item span {
+   
+    font-family:Georgia;
+    font-size: 20px;
+    color: rgb(22, 28, 56);
+    line-height:1px;
+    font-weight: bolder;
+}
+.card-title1{
+    font-weight: bold; 
+    color: rgb(18, 18, 241);
+text-align: center;
+    margin-top: 10px;
+    font-family: serif ;
+    text-transform: uppercase; 
+     
+}
+
+.workshop-image {
+    margin-left: 140px;
+    display: flex;
+    height: 125px;
+    margin-top: 5px;
+
+}
+/* avoire elle est un  peut utile */
+.workshop-container {
+    margin-top: 100px;
+    width: 33%;
+    height: auto;
+    margin-bottom: 50px;
+} 
+.imageformaton{
+
+}

@@ -1,0 +1,69 @@
+.filtered-by-date-formations{
+    border: 2px solid rgb(18, 15, 17);
+    margin-top: 10px;
+    width:50% ;
+    margin-left: 50px; 
+    border-radius: 6px;
+    border: 3px solid rgb(3, 60, 103);
+    box-shadow: 0px 0px 6px rgba(53, 49, 49, 0.8);
+    background-color: rgb(243, 244, 255);
+    margin-bottom: 5px;
+}
+
+.filtered-by-date-workshops{
+    border: 2px solid rgb(18, 15, 17);
+    width: 50%;
+    margin-top: 10px; 
+    margin-right: 20px;
+    margin-left: 80px;
+    border-radius: 6px;
+    height: auto;
+    border: 3px solid rgb(3, 60, 103);
+    box-shadow: 0px 0px 6px rgba(53, 49, 49, 0.8);
+    background-color: rgb(243, 244, 255);
+    margin-bottom: 5px;
+    
+}
+
+.venue{
+   margin-top: 60px;
+   margin-bottom: 30px;
+   text-align: center;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+   color: crimson;
+}
+
+.Flter-element1 {
+    padding: 10px;
+}
+
+.Flter-element {
+    padding: 10px;
+}
+
+.Flter-element button, .Flter-element1 button {
+    margin-left: 15px;
+    border-radius: 10px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    padding: 5px;
+}
+
+.componentcolor{
+    background-color: rgb(246, 246, 246);  
+}
+
+.Inscri{
+    margin-top: 320px;
+}
+
+.SessionContainer {
+    margin-right: 150px;
+    margin-left: 60px;
+    margin-top: 150px;
+}
+
+.event-handler {
+    padding: 20px;
+}
