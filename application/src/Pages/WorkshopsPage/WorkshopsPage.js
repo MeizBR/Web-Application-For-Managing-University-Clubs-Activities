@@ -36,10 +36,6 @@ export const WorkshopsPage = () => {
       
       
       <div className='row m-1 workshops-container'>
-        
-        
-       
-     
       {workshops.map(workshop => {
         return(
           <div className='col-3 workshop-container'>
@@ -61,6 +57,7 @@ export const WorkshopsPage = () => {
         )
       })}
       </div>
+      
        <div ClassName='bware'> 
             <Footer />
        </div>

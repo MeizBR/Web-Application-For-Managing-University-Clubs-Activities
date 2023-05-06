@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Axios from 'axios'; 
 import './WorkshopElement.css'
 import { Navbar } from '../../components/Navbar/Navbar';
+import { Footer } from '../../sections/Footer/Footer';
 
 export const WorkshopElement = () => {
 
@@ -199,6 +200,8 @@ export const WorkshopElement = () => {
       </div>
       
     </div>
+
+    <Footer />
     </div>
   )
 }

@@ -490,6 +490,18 @@ app.put('/students/:id', async (req, res) => {
   }
 });
 
+// display events based on a calendar
+app.get('/sessions/:date', async (req, res) => {
+  const { date } = req.params;
+  // Assuming you have a SessionModel connected to the MongoDB collection
+  const sessions = await SessionModel.find({ EventDate: date });
+
+  if (sessions.length > 0) {
+    res.status(200).json(sessions);
+  } else {
+    res.status(404).json({ message: 'No sessions found for the selected date' });
+  }
+});
 
 
 

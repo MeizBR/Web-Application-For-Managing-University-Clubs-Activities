@@ -8,6 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 import Axios from 'axios';
 import './FormationElement.css'
 import { Navbar } from '../../components/Navbar/Navbar';
+import { Footer } from '../../sections/Footer/Footer';
 
 // export the default component FormationElement
 export const FormationElement = () => {
@@ -206,7 +207,7 @@ export const FormationElement = () => {
     </div>
    
   
-       
+       <Footer />
    
   </div>
  

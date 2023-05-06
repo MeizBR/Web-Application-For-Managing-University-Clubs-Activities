@@ -4,6 +4,7 @@ import InscriptionsFormationsTable from '../../Pages/Organisation/InscriptionsFo
 import InscriptionsWorkshopsTable from '../../Pages/Organisation/InscriptionsWorkshopsTable';
 import { Feedback } from '../../components/Feedback/Feedback';
 import { FeedbackWorkshop } from '../../components/Feedback/FeedbackWorkshop';
+import { Footer } from '../../sections/Footer/Footer';
 
 export const AdminInterface = () => {
 
@@ -206,6 +207,7 @@ export const AdminInterface = () => {
     </div>
 
     </div>
+    <Footer />
     </div>
   )
 }

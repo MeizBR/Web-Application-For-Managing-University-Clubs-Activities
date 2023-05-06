@@ -10,6 +10,9 @@ const SessionsSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
+    EventDate : {
+        type : Date
+    },
     EventRoom : {
         type : String
     },
