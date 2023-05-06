@@ -89,6 +89,8 @@ export const WorkshopElement = () => {
         studentSection !== '' &&
         !isNaN(studentCode)
       ) {
+        const capitalizedFirstName = studentFirstName.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+        const capitalizedLastName = studentLastName.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
         if (
           allowedCodes.includes(Number(studentCode)) &&
           allowedFirstNames.includes(studentFirstName) &&
@@ -101,14 +103,14 @@ export const WorkshopElement = () => {
               workshopId : workshop._id,
               formateurFirstName : workshop.formateurFirstName,
               formateurLastName : workshop.formateurLastName,
-              studentFirstName : studentFirstName,
-              studentLastName : studentLastName,
+              studentFirstName : capitalizedFirstName,
+              studentLastName : capitalizedLastName,
               studentEmail : studentEmail,
               studentSection : studentSection,
               studentCode: studentCode,
               })
               .then(res => {
-                alert("Inscription submitted successfully")
+                  alert("Inscription submitted successfully")
                   console.log(res.data);
                   setStudentFirstName("");
                   setStudentLastName("");

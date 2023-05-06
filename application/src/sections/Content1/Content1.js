@@ -8,7 +8,7 @@ export const Content1 = () => {
       
     <div >
         <div className='Front'style={{display:'flex' }} >
-        <div className='margin ' style={{ marginRight: '100px',marginLeft:'170px' }}>
+        <div className='margin ' style={{ marginRight: '100px',marginLeft:'70px' }}>
              <Welcome/>
         </div>
         <div className="Appcontainer">

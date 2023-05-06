@@ -119,7 +119,7 @@ export const FormationElement = () => {
                   studentCode : studentCode,
               })
               .then(res => {
-                  alert("Inscription submitted successfully")
+                  alert("Inscription submitted successfully");
                   console.log(res.data);
                   setStudentFirstName("");
                   setStudentLastName("");

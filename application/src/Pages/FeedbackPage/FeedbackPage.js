@@ -82,6 +82,8 @@ export const FeedbackPage = () => {
         feedbackRating !== '' &&
         feedbackRating !== null
       ) {
+        const capitalizedFirstName = studentFirstName.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+        const capitalizedLastName = studentLastName.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
           if (
             allowedCodes.includes(Number(studentCode)) &&
             allowedFirstNames.includes(studentFirstName) &&
@@ -93,8 +95,8 @@ export const FeedbackPage = () => {
                     formationName : formationName,
                     formateurFirstName : formateurFirstName,
                     formateurLastName : formateurLastName,
-                    studentFirstName : studentFirstName,
-                    studentLastName : studentLastName,
+                    studentFirstName : capitalizedFirstName,
+                    studentLastName : capitalizedLastName,
                     studentEmail : studentEmail,
                     studentSection : studentSection,
                     studentCode: studentCode,
@@ -103,6 +105,7 @@ export const FeedbackPage = () => {
                     createdAt : new Date()
                 })
                 .then(res => {
+                    alert("Feedback submitted successfully");
                     console.log(res.data);
                     setStudentFirstName("");
                     setStudentLastName("");

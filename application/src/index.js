@@ -18,7 +18,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/home",
     element: <App />,
   },
   {
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       element: <WorkshopElement />,
   },
   {
-    path: "/login",
+    path: "/",
       element: <Login />,
   },
   {

@@ -6,6 +6,7 @@ import { Feedback } from '../../components/Feedback/Feedback'
 import ImageSlider, { Events } from '../../components/Events/Events'
 import ImageCarousel from '../../components/SlideIMG/ImageCarousel';
 import Clubinti from '../../components/Clubinitiate/Clubinti'
+import { FeedbackWorkshop } from '../../components/Feedback/FeedbackWorkshop'
 
 export const Content = () => {
   return (
@@ -24,6 +25,7 @@ export const Content = () => {
       <ClubsContent />
       <Events />
       <Feedback />
+      <FeedbackWorkshop />
     </div>
   )
 }

@@ -43,7 +43,7 @@ export const AdminLogin = () => {
             </label>
             <br />
             <button type='submit' onClick={handleSubmit}>Login</button>
-            <div class="badge text-bg-light p-2"><Link to="/login">Are You a Student ? So Go Here ==&gt;</Link></div>
+            <div class="badge text-bg-light p-2"><Link to="/">Are You a Student ? So Go Here ==&gt;</Link></div>
             {error && <h6 className="alert error">{error}</h6>}
         </form>
         </div>

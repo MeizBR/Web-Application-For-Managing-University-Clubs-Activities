@@ -440,9 +440,9 @@ app.post('/adminLogin', async (req, res) => {
   }
 })
 
+// add student by the admin
 app.post("/addStudent", async (req, res) => {
     const student = req.body;
-
     const { studentCode, studentEmail } = student;
     const existingStudent = await StudentModel.findOne({ studentCode, studentEmail });
 
@@ -450,11 +450,48 @@ app.post("/addStudent", async (req, res) => {
       res.status(400).json({ error: 'Student already exists' })
     } else {
       const newStudent = new StudentModel(student);
-      await newInscription.save(newStudent);
+      await newStudent.save(newStudent);
+      res.json(student);
+    }
+})
+
+// delete student by the admin
+app.delete('/students/:id', async (req, res) => {
+  try {
+    const deletedStudent = await StudentModel.findByIdAndDelete(req.params.id);
+
+    if (!deletedStudent) {
+      return res.status(404).json({ message: 'Student not found' });
     }
 
-    
-})
+    res.json({ message: 'Student deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while deleting the student' });
+  }
+});
+
+// update the student by the admin
+app.put('/students/:id', async (req, res) => {
+  const studentId = req.params.id;
+  const updatedStudent = req.body;
+
+  try {
+    const student = await StudentModel.findByIdAndUpdate(studentId, updatedStudent, { new: true });
+
+    if (student) {
+      res.status(200).json(student);
+    } else {
+      res.status(404).json({ message: 'Student not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while updating the student' });
+  }
+});
+
+
+
 
 // define the port that the express server is running on and display a descriptive message
 app.listen(5000, () => {console.log("app is running on port 5000")})

@@ -3,6 +3,7 @@ import './Feedback.css'
 import { Link } from "react-router-dom";
 import Axios from "axios"
 import { useState, useEffect } from 'react'
+import Rating from 'react-rating-stars-component';
 
 export const Feedback = () => {
 
@@ -19,7 +20,7 @@ export const Feedback = () => {
 
   return (
     <div className='container feedback-container'>
-        <h3 className='feedback-title'>Some feedbacks shared by our students</h3>
+        <h3 className='feedback-title'>Some Trainings Feedbacks Shared By Our Students</h3>
 
     <div className='row'>
       {feedbacks.slice(0,3).map(feedback => {
@@ -29,17 +30,26 @@ export const Feedback = () => {
           <img src="images/FEEDBACKICON.png"   className="card-img-top" alt="feedback-image" />
             <div className="card-body1">
               <h5 className="card-title" style={{fontFamily:"serif" , color:"black" ,fontSize:"19px"}}> Formation Name : {feedback.formationName}</h5>
+              <h6 className="card-text" style={{color:"white",}}>Trainer  : {feedback.formateurFirstName} {feedback.formateurLastName}</h6>
               <h6 className="card-text" style={{color:"white",}}>Student  : {feedback.studentFirstName} {feedback.studentLastName}</h6>
-             
               <h6 className="card-text" style={{color:"white" }}>Section : {feedback.studentSection}</h6>
               <h6 className="card-text" style={{color:"white" }}>Content : {feedback.feedbackContent}</h6>
-              <h6 className="card-text" style={{color:"red" }}>Stars Rating : {feedback.feedbackRating} Stars</h6>
+              <h6 className="card-text" style={{color:"red" }}>Stars Rating : 
+                <Rating
+                    count={6}
+                    size={35}
+                    activeColor="RED"
+                    color="GRAY"
+                    value={feedback.feedbackRating}
+                  />
+              </h6>
             </div>
           </div>
           </div>
         )
       })}
       </div>
+
         <div className='btn'>
             <a className='to-feedback'><Link to="/feedback">Have a feedback to share with us ? click here</Link></a>
         </div>

@@ -15,7 +15,7 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:5000/login', { firstName, lastName, code });
       if (response.status === 200) {
-        window.location.href = '/';
+        window.location.href = '/home';
         window.alert("Welcome to our family");
       } else {
         setError('Invalid login credentials. Please make sure you are providing valid information');

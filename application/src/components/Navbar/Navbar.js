@@ -9,7 +9,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg tertiary navbar-style" >
   <div className="container-fluid">
     <a className="navbar-brand" href="#">
-      <Link to="/"><img className='logo' src={Logo} /></Link>
+      <Link to="/home"><img className='logo' src={Logo} /></Link>
     </a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@ export const Navbar = () => {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
           <a className="nav-link active" aria-current="page">
-          <Link to="/"><FaHome className='icons' />Home</Link>
+          <Link to="/home"><FaHome className='icons' />Home</Link>
           </a>
         </li>
         <li className="nav-item">
@@ -67,7 +67,7 @@ export const Navbar = () => {
 
         <li className="nav-item">
           <a className="nav-link" aria-current="page">
-          <Link to="/login"><FaUser className='icons' />Logout</Link>
+          <Link to="/"><FaUser className='icons' />Logout</Link>
           </a>
         </li>
 
