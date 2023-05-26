@@ -73,7 +73,7 @@ export const Sessions = () => {
             <div className="session-details" key={session._id}>
             <h6><span>Event Name : </span>{session.EventName}</h6>
             <h6><span>Event Nature: </span>{session.EventNature}</h6>
-            <h6><span>Event Room: </span>{session.room}</h6>
+            <h6><span>Event Room: </span>{session.EventRoom}</h6>
             <h6><span>Event Session Number : </span>{session.EventSession}</h6>
             <h6><span>Event Start Hour: </span>{session.EventStartHour}</h6>
             <h6><span>Event End Hour: </span>{session.EventEndHour}</h6>

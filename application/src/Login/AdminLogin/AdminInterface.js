@@ -5,6 +5,9 @@ import InscriptionsWorkshopsTable from '../../Pages/Organisation/InscriptionsWor
 import { Feedback } from '../../components/Feedback/Feedback';
 import { FeedbackWorkshop } from '../../components/Feedback/FeedbackWorkshop';
 import { Footer } from '../../sections/Footer/Footer';
+import './AdminInterface.css';
+import { AdminTrainings } from './AdminTrainings';
+import { Link } from 'react-router-dom';
 
 export const AdminInterface = () => {
 
@@ -110,6 +113,7 @@ export const AdminInterface = () => {
 
   return (
     <div>
+      <button id='logout-button' type="button" class="btn btn-light"><Link to="/admin">Logout</Link></button>
     <h3 className='text-success mt-4'>Administrator Interface</h3>
     <div>
         <form id='add-student-form'>
@@ -145,10 +149,10 @@ export const AdminInterface = () => {
                     <div className="col-3" key={student._id}>
                     <div className="card" style={{width:"97%", margin:"5px"}}>
                         <ul class="list-group list-group-flush">
-                            <li className="list-group-item">{student.studentFirstName} {student.studentLastName}</li>
-                            <li className="list-group-item">{student.studentSection}</li>
-                            <li className="list-group-item">{student.studentEmail}</li>
-                            <li className="list-group-item">{student.studentCode}</li>
+                            <li className="list-group-item">Full Name : {student.studentFirstName} {student.studentLastName}</li>
+                            <li className="list-group-item">Section : {student.studentSection}</li>
+                            <li className="list-group-item">Email : {student.studentEmail}</li>
+                            <li className="list-group-item">Code : {student.studentCode}</li>
                         </ul>
                         <div class="card-footer">
                             <button className="btn btn-primary mt-1" onClick={() => updateStudent(student)}>Update Student</button>
@@ -193,6 +197,24 @@ export const AdminInterface = () => {
     </form>
   </div>
 )}
+
+
+
+
+
+
+
+
+
+<AdminTrainings />
+
+
+
+
+
+
+
+
 
     <div className='mt-5' id='inscription-section'>
         <h3>Check The Inscriptions By Students</h3>

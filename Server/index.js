@@ -504,6 +504,50 @@ app.get('/sessions/:date', async (req, res) => {
 });
 
 
+// add training by the admin
+app.post("/addTraining", async (req, res) => {
+    const training = req.body;
+    const newTraining = new FormationModel(training);
+    await newTraining.save(newTraining);
+    res.json(training);
+})
+
+
+// update the training by the admin
+app.put('/formations/:id', async (req, res) => {
+  const trainingId = req.params.id;
+  const updatedTraining = req.body;
+
+  try {
+    const training = await FormationModel.findByIdAndUpdate(trainingId, updatedTraining, { new: true });
+
+    if (training) {
+      res.status(200).json(training);
+    } else {
+      res.status(404).json({ message: 'Training not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while updating the training' });
+  }
+});
+
+// delete training by the admin
+app.delete('/formations/:id', async (req, res) => {
+  try {
+    const deletedTraining = await FormationModel.findByIdAndDelete(req.params.id);
+
+    if (!deletedTraining) {
+      return res.status(404).json({ message: 'Training not found' });
+    }
+
+    res.json({ message: 'Training deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred while deleting the training' });
+  }
+});
+
 
 // define the port that the express server is running on and display a descriptive message
 app.listen(5000, () => {console.log("app is running on port 5000")})

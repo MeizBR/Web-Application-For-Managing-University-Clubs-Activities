@@ -27,19 +27,19 @@ export const AdminLogin = () => {
   };
 
   return (
-    <>
-        <h1>/***/ Welcome To Our Enetcom Clubs Management Web Application /***/</h1>
+    <div className='body'>
+        <h1>Welcome To Our Enetcom Clubs Management Web Application</h1>
         <div className="login-container">
         <h2>Administrators Login Page</h2>
         <form>
             <label>
-            Admin FullName :
-            <input type="text" onChange={(event) => setAdminFullName(event.target.value)} />
+            Admin FullName
+            <input style={{marginLeft : "40px"}} type="text" onChange={(event) => setAdminFullName(event.target.value)} />
             </label>
             <br />
             <label>
-            Admin Password :
-            <input type="password" onChange={(event) => setAdminPassword(event.target.value)} />
+            Admin Password
+            <input style={{marginLeft : "40px"}} type="password" onChange={(event) => setAdminPassword(event.target.value)} />
             </label>
             <br />
             <button type='submit' onClick={handleSubmit}>Login</button>
@@ -48,6 +48,6 @@ export const AdminLogin = () => {
         </form>
         </div>
         <Footer />
-    </>
+    </div>
   )
 }

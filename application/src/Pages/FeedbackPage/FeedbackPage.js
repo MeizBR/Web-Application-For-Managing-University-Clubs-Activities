@@ -247,8 +247,7 @@ const calculatePercentage = (formationName, rating) => {
 
   {formations.map((formation) => (
   <div className='progress-bar-container' key={formation._id}>
-    <h3>Formation Name : {formation.formationName}</h3>
-    <h3>Formation Identifier : {formation._id}</h3>
+    <h3>{formation.formationName}</h3>
     <p>
       <span>1 Star:</span>
       <div className="progress-bar container">

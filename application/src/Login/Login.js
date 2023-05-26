@@ -48,24 +48,24 @@ function Login() {
   };
 
   return (
-    <>
-    <h1>/***/ Welcome To Our Enetcom Clubs Management Web Application /***/</h1>
+    <div className='body'>
+    <h1>Welcome To Our Enetcom Clubs Management Web Application</h1>
     <div className="login-container">
       <h2>Students Login Page</h2>
       <form>
         <label>
-          Student First Name :
-          <input type="text" onChange={(event) => setFirstName(event.target.value)} />
+          Student First Name
+          <input style={{marginLeft : "40px"}} type="text" onChange={(event) => setFirstName(event.target.value)} />
         </label>
         <br />
         <label>
-          Student Last Name :
-          <input type="text" onChange={(event) => setLastName(event.target.value)} />
+          Student Last Name
+          <input style={{marginLeft : "40px"}} type="text" onChange={(event) => setLastName(event.target.value)} />
         </label>
         <br />
         <label>
-          Student Insc Code :
-          <input type="password" onChange={(event) => setCode(event.target.value)} />
+          Student Inscr Code
+          <input style={{marginLeft : "40px"}} type="password" onChange={(event) => setCode(event.target.value)} />
         </label>
         <br />
         <button type='submit' onClick={handleSubmit}>Login</button>
@@ -115,7 +115,7 @@ function Login() {
       </div>
     
     <Footer />
-    </>
+    </div>
   );
 }
 

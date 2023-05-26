@@ -65,12 +65,13 @@ text-align: center;
 /* CSS for awesome progress bar */
 
 .progress-bar-container {
-  margin: 15px 500px 25px 500px;
+  margin: 15px 300px 25px 300px;
   margin-right: 500px;
   margin-left: 500px;
   border: 5px double steelblue;
   border-radius: 15px;
   padding: 15px;
+  width: 30%;
 }
 
 .progress-bar {

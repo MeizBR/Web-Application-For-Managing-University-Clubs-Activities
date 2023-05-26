@@ -132,7 +132,7 @@ export const FormationElement = () => {
               })
               .catch((err) => {
                 if (err.response && err.response.status === 400) {
-                  alert(err.response.data.message);
+                  alert("The student has already submitted an inscription to this formation");
                   document.getElementById("myForm").reset();
                   document.getElementById("section").selectedIndex = 0;
                 } else {

@@ -48,7 +48,7 @@ export const FormationsPage = () => {
               <p class="card-text"><span>Start date :</span> {formation.startDateFormation}</p>
               <p class="card-text"><span>Sessions number :</span> {formation.sessionsNumber}</p>
               <p class="card-text"><span>Price :</span> {formation.price}</p>
-              <p class="card-text"><span>Trainer </span> : {formation.formateurFirstName}  {formation.formateurLastName}</p>
+              <p class="card-text"><span>Trainer :</span> {formation.formateurFirstName}  {formation.formateurLastName}</p>
           
               <div>
                 <Link to={`/formations/${formation._id}`}><button variant="primary">View more details here !</button></Link>
