@@ -1,0 +1,9 @@
+terraform/.terraform/
+terraform/hosts.ini
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+crash.log
+*.log
+*.bak
+*.swp

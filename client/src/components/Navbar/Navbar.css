@@ -1,0 +1,54 @@
+.logo { 
+    margin-left: 80px;
+    width: 250px;
+    height: 55px;
+    animation: blink 7s infinite;
+    border-radius: 85px
+   
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+.container-fluid{ 
+    
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    position: fixed;
+    background-color: rgb(6, 39, 67);
+/*background-color: rgb(3, 46, 87);*/
+    width:  100%;
+    
+}
+
+.icons {
+    margin-right: 7px;
+}
+
+nav a :hover {
+    color: grey;
+  }
+
+.nav-items-container {
+   
+    margin-left: 150px;
+}
+
+a {
+  
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 17px;
+    font-weight: bold; 
+    
+}
+
+@media screen and (max-width: 767px) {
+    .nav-items-container {
+        margin-left:0px;
+    }
+}

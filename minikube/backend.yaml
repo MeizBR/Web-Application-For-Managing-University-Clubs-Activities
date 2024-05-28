@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pfa-backend-app
+  labels:
+    app: pfa-backend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pfa-backend-app
+  template:
+    metadata:
+      labels:
+        app: pfa-backend-app
+    spec:
+      containers:
+      - name: pfa-backend-app
+        image: meiezbr/web-application-for-managing-university-clubs-activities_backend:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGODB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mongodb-configmap
+              key: database_host
+        - name: MONGODB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mongodb-configmap
+              key: database_collection
+        - name: MONGODB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-username
+        - name: MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pfa-backend-service
+spec:
+  selector:
+    app: pfa-backend-app
+  type: LoadBalancer  
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30001

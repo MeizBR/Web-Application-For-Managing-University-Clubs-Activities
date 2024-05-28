@@ -1,0 +1,16 @@
+.IMG{
+    display: flex;
+}
+.Appcontainer{
+    margin-top: 20px; 
+    z-index: 50;
+   
+    display: flex; 
+   
+
+
+}
+.margin {
+    margin-top: 50px ;
+    margin-left: 280px;
+}

@@ -1,0 +1,58 @@
+footer {
+    background: linear-gradient(to bottom,rgb(1, 30, 66),rgb(1, 54, 113),rgb(1, 76, 169));
+    padding: 10px;
+    box-shadow: 40px 40px 40px 40px rgb(1, 76, 169);
+}
+
+footer #footer-title {
+    font-family: cursive;
+    color: cornflowerblue;
+    border-top: 5px solid cornflowerblue;
+    border-bottom: 5px solid cornflowerblue;
+}
+
+footer .footer-container #map {
+    display :flex;
+    position: relative;
+    left: 17%;
+}
+
+/*you can foloow your favv.... */
+.footer-container h2, h3 {
+    text-align: center;
+}
+
+/*Created and edited by ...*/
+.footer-container #credit {
+    margin-top: 25px;   
+}
+
+/*map*/
+#map {
+    border: 10px double turquoise;
+    border-radius: 15px;
+    margin-left: -18px;
+    width: 900px;
+}
+
+.social-media-container {
+    width: 40%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#clubs-table {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+#clubs-table tr td {
+    border: 2px solid cyan;
+    padding: 5px;
+}
+
+#clubs-table tr td .facebook-logo {
+    width: 8%;
+    border-radius: 100%;
+    margin-right: 15px;
+}

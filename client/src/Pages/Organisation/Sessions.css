@@ -1,0 +1,63 @@
+.sessions-container {
+    border: 5px solid steelblue;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 5px 5px 5px 5px steelblue;
+    width: 110%;
+}
+
+.T8 th , .T8 td { 
+    border: 2px solid black;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.T8 th {
+    font-weight: bold;
+}
+
+.T8 {
+    width: 100%;
+}
+
+
+.calendar-container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .custom-calendar {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  .react-calendar__tile {
+    cursor: pointer;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #ffcc00;
+    color: #fff;
+  }
+  
+  .session-details {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e6e6e6;
+    border-radius: 15px;
+  }
+  
+  .session-details h6 {
+    margin-top: 0;
+  }
+  
+  .session-details p {
+    margin-bottom: 0;
+  }
+  

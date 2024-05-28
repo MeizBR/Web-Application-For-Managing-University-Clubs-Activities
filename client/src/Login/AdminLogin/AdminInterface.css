@@ -1,0 +1,21 @@
+#add-student-form div {
+    margin-bottom: 5px;
+}
+
+span {
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+select {
+    width: 60%;
+}
+
+#logout-button {
+    margin-top: 15px;
+    margin-left: 92%;
+}
+
+#logout-button:hover {
+    background-color: whitesmoke;
+}

@@ -1,0 +1,83 @@
+---
+- name: Pull Docker images and start containers
+  hosts: all
+  become: true
+  tasks:
+    # Create Docker Volume
+    - name: Create a volume
+      docker_volume:
+        name: mongodb_data
+
+    # Create Docker Network of type Bridge
+    - name: Create Docker network
+      community.docker.docker_network:
+        name: "pfa-net"
+        state: present
+        driver: "bridge"
+        ipam_options:
+          - subnet: "172.20.0.0/16"
+            gateway: "172.20.0.1"
+
+    # Pull the Mongo Docker Image
+    - name: Pull the Mongo Docker Image
+      community.docker.docker_image:
+        name: "mongo:latest"
+        source: pull
+
+    # Create Mongo containers
+    - name: Create Mongo container
+      community.docker.docker_container:
+        name: "pfa-db"
+        image: "mongo:latest"
+        env:
+          MONGO_INITDB_ROOT_USERNAME: "meiezbr"
+          MONGO_INITDB_ROOT_PASSWORD: "159357"
+        networks:
+          - name: "pfa-net"
+            ipv4_address: "172.20.0.2"
+        volumes:
+          - "mongodb_data:/data/db"
+        ports:
+          - "27017:27017"
+        state: started
+    
+    # Pull the PFA Web App Backend Docker Image
+    - name: Pull PFA Web App Backend Docker Image
+      community.docker.docker_image:
+        name: "meiezbr/web-application-for-managing-university-clubs-activities_backend:latest"
+        source: pull
+
+    # Create Backend containers
+    - name: Create Backend containers
+      community.docker.docker_container:
+        name: "pfa-backend"
+        image: "meiezbr/web-application-for-managing-university-clubs-activities_backend:latest"
+        env:
+          MONGODB_HOST: mongodb
+          MONGODB_DATABASE: admin
+          MONGODB_USER: meiezbr
+          MONGODB_PASSWORD: 159357
+        networks:
+          - name: "pfa-net"
+            ipv4_address: "172.20.0.3"
+        ports:
+        - "5000:5000"
+        state: started
+
+    # Pull the PFA Web App Frontend Docker Image
+    - name: Pull PFA Web App Frontend Docker Image
+      community.docker.docker_image:
+        name: "meiezbr/web-application-for-managing-university-clubs-activities_frontend:latest"
+        source: pull
+
+    # Create Frontend containers
+    - name: Create Frontend containers
+      community.docker.docker_container:
+        name: pfa-frontend
+        image: "meiezbr/web-application-for-managing-university-clubs-activities_frontend:latest"
+        networks:
+          - name: "pfa-net"
+            ipv4_address: "172.20.0.4"
+        ports:
+        - "80:80"
+        state: started

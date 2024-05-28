@@ -1,0 +1,29 @@
+
+
+.clubs-content-container {
+ 
+    border-radius: 1px;
+    padding: 30px;
+
+    margin-top: 50px;
+}
+.card-body2{
+    background-color: #d8d7e0;
+}
+.clubs-content-title {
+    color: rgb(4, 25, 41);
+   
+    margin-bottom: 30px;
+    font-family: none;
+}
+.card-text{
+    color :rgb(31, 44, 92)
+}
+
+.it-image {
+    width: 100%;
+    height: 120px;
+}
+.card-title{
+    color: black;
+}

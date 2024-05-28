@@ -1,0 +1,136 @@
+version: "3.9"
+
+services:
+
+  # database
+  mongodb:
+    image: mongo:latest
+    container_name: pfa-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: meiezbr
+      MONGO_INITDB_ROOT_PASSWORD: 159357
+    networks:
+      pfa-net:
+        ipv4_address: 172.20.0.2
+    # labels:
+    #  - com.prometheus.scrape=true
+    #  - com.prometheus.port=9100
+
+  # mongodb-exporter:
+  #   image: bitnami/node-exporter:latest
+  #   environment:
+  #     - MONGODB_URI=mongodb://meiezbr:159357@mongodb:27017/admin
+  #   ports:
+  #     - 9100:9100
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 128M
+  #   depends_on:
+  #     - mongodb
+  #   hostname: mymongodb
+
+  # prometheus:
+  #   image: "prom/prometheus" 
+  #   ports:
+  #     - "9090:9090"  
+  #   volumes:
+  #     - ./prometheus:/etc/prometheus  
+  #     - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 1G
+  #   depends_on:
+  #     - api
+  #     - mongodb
+
+  # grafana:
+  #   image: grafana/grafana
+  #   ports:
+  #     - "3001:3000"  
+  #   volumes:
+  #     - ./grafana:/var/lib/grafana  
+  #   environment:
+  #     - GF_SECURITY_ADMIN_PASSWORD=password 
+  #     - PORT=8000
+  #     - GF_USERS_ALLOW_SIGN_UP=false  
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 1G
+  #   depends_on:
+  #     - prometheus
+  
+  # backend
+  backend:
+    container_name: pfa-backend
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_DATABASE: admin
+      MONGODB_USER: meiezbr
+      MONGODB_PASSWORD: 159357
+    depends_on:
+      - mongodb
+    networks:
+      pfa-net:
+        ipv4_address: 172.20.0.3
+    # hostname: mybackendhostname
+    # labels:
+    #  - com.prometheus.scrape=true
+    #  - com.prometheus.port=5000
+  
+  # frontend
+  frontend:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    container_name: pfa-frontend
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    ports:
+      - "80:80"
+      # - "443:443"
+    depends_on:
+      - mongodb
+      - backend
+    networks:
+      pfa-net:
+        ipv4_address: 172.20.0.4
+    volumes:
+      - ./client/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./client/nginx/cors.conf:/etc/nginx/cors.conf:ro
+      - ./client/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # - ./certbot/www/:/var/www/certbot/:ro
+    # hostname: myfrontendhostname
+
+  # certbot
+  # certbot:
+  #   image: certbot/certbot:latest
+  #   volumes:
+  #     - ./certbot/www/:/var/www/certbot/:rw
+  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+
+# volumes
+volumes:
+  mongodb_data:
+
+# networks
+networks:
+  pfa-net:
+    name: pfa-net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
