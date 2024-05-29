@@ -12,11 +12,8 @@
     - name: Create Docker network
       community.docker.docker_network:
         name: "pfa-net"
-        state: present
         driver: "bridge"
-        ipam_options:
-          - subnet: "172.20.0.0/16"
-            gateway: "172.20.0.1"
+        state: present
 
     # Pull the Mongo Docker Image
     - name: Pull the Mongo Docker Image
@@ -34,7 +31,6 @@
           MONGO_INITDB_ROOT_PASSWORD: "159357"
         networks:
           - name: "pfa-net"
-            ipv4_address: "172.20.0.2"
         volumes:
           - "mongodb_data:/data/db"
         ports:
@@ -53,13 +49,12 @@
         name: "pfa-backend"
         image: "meiezbr/web-application-for-managing-university-clubs-activities_backend:latest"
         env:
-          MONGODB_HOST: mongodb
-          MONGODB_DATABASE: admin
-          MONGODB_USER: meiezbr
-          MONGODB_PASSWORD: 159357
+          MONGODB_HOST: "pfa-db"
+          MONGODB_DATABASE: "admin"
+          MONGODB_USER: "meiezbr"
+          MONGODB_PASSWORD: "159357"
         networks:
           - name: "pfa-net"
-            ipv4_address: "172.20.0.3"
         ports:
         - "5000:5000"
         state: started
@@ -77,7 +72,8 @@
         image: "meiezbr/web-application-for-managing-university-clubs-activities_frontend:latest"
         networks:
           - name: "pfa-net"
-            ipv4_address: "172.20.0.4"
         ports:
-        - "80:80"
+          - "80:80"
+        volumes:
+          - "/home/ubuntu/certbot:/var/www/certbot/:ro"
         state: started
