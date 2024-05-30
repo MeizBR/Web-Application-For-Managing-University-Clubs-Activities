@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: mongodb-deployment
+  name: mongodb-statefull-set
   labels:
     app: mongodb
 spec:
+  serviceName: "mongodb-service"
   replicas: 1
   selector:
     matchLabels:
@@ -19,6 +20,10 @@ spec:
         image: mongo
         ports:
         - containerPort: 27017
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "0.5"
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
@@ -30,13 +35,17 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
-      #   volumeMounts:
-      #   - name: mongodb-data
-      #     mountPath: /data/db
-      # volumes:
-      # - name: mongodb-data
-      #   persistentVolumeClaim:
-      #     claimName: mongodb-pvc
+        volumeMounts:
+        - name: mongodb-data
+          mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 5Gi
 
 ---
 apiVersion: v1
@@ -50,3 +59,18 @@ spec:
     - protocol: TCP
       port: 27017
       targetPort: 27017
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service-expose
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  type: LoadBalancer

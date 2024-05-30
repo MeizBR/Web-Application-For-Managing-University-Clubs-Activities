@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mongodb-pv
+  name: mongodb-data
   labels:
     type: local
 spec:
   capacity:
-    storage: 512m
+    storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: standard
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: "mongodb_data"
+    path: "/data/db"
