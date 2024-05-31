@@ -6,7 +6,7 @@ const InscriptionsFormationsTable = () => {
 
   useEffect(() => {
     // Fetch data from the Express.js API
-    fetch('http://localhost:5000/api/getEnrolledStudentsPerFormation')
+    fetch('/api/getEnrolledStudentsPerFormation')
       .then(response => response.json())
       .then(data => setInscriptions(data))
       .catch(error => console.error('Error fetching inscriptionsFormations:', error));

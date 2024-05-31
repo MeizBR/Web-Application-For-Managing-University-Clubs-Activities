@@ -12,7 +12,7 @@ export const FeedbackPage = () => {
   // useEffect to make API data extraction synchronous
   useEffect(() => {
     Axios
-      .get("http://localhost:5000/api/formations")
+      .get("/api/formations")
       .then((res) => setFormation(res.data))
       .catch((err) => console.log(err));
   });
@@ -39,7 +39,7 @@ export const FeedbackPage = () => {
   // extract the students data
   useEffect(() => {
     Axios
-      .get("http://localhost:5000/api/students")
+      .get("/api/students")
       .then((res) => {
         const codes = res.data.map((student) => student.studentCode);
         const firstnames = res.data.map((student) => student.studentFirstName);
@@ -91,7 +91,7 @@ export const FeedbackPage = () => {
             allowedSections.includes(studentSection) &&
             allowedEmails.includes(studentEmail)
           ) {
-              Axios.post("http://localhost:5000/api/submitAFeedback", {
+              Axios.post("/api/submitAFeedback", {
                     formationName : formationName,
                     formateurFirstName : formateurFirstName,
                     formateurLastName : formateurLastName,
@@ -135,7 +135,7 @@ export const FeedbackPage = () => {
 
  // Fetch feedbacks data
  useEffect(() => {
-  Axios.get("http://localhost:5000/api/feedbacks")
+  Axios.get("/api/feedbacks")
     .then((res) => setFeedbacks(res.data))
     .catch((err) => console.log(err));
 }, []);

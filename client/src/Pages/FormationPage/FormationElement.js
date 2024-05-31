@@ -20,7 +20,7 @@ export const FormationElement = () => {
 
   useEffect(() => {
     Axios
-      .get(`http://localhost:5000/api/formations/${id}`)
+      .get(`/api/formations/${id}`)
       .then((res) => setFormation(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -47,7 +47,7 @@ export const FormationElement = () => {
   // extract the students data and define the constraints
   useEffect(() => {
     Axios
-      .get("http://localhost:5000/api/students")
+      .get("/api/students")
       .then((res) => {
         const codes = res.data.map((student) => student.studentCode);
         const firstnames = res.data.map((student) => student.studentFirstName);
@@ -67,7 +67,7 @@ export const FormationElement = () => {
   // Get the inscriptions count from the backend when component mounts
   useEffect(() => {
     if (formation._id) {
-    Axios.get(`http://localhost:5000/api/formations/${formation._id}`)
+    Axios.get(`/api/formations/${formation._id}`)
       .then(res => {
         const storedCount = res.data.inscriptionsCount;
         if (storedCount) {
@@ -108,7 +108,7 @@ export const FormationElement = () => {
           allowedSections.includes(studentSection) &&
           allowedEmails.includes(studentEmail)
         ) {
-            Axios.post("http://localhost:5000/api/submitAnInscriptionFormation", {
+            Axios.post("/api/submitAnInscriptionFormation", {
                   formationName : formation.formationName,
                   formationId : formation._id,
                   formateurFirstName : formation.formateurFirstName,

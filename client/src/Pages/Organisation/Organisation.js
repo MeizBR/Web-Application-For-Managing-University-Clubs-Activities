@@ -29,7 +29,7 @@ export const Organisation = () => {
   // function filterByDateFormations
   const filterByDateFormations = () => {
     if (formationStartDate) {
-      Axios.get(`http://localhost:5000/api/formationsFiltredByDate?startDate=${formationStartDate}`, {timeout : 5000})
+      Axios.get(`/api/formationsFiltredByDate?startDate=${formationStartDate}`, {timeout : 5000})
       .then(response => setFormations(response.data))
       .catch(error => console.error(error));
     } else {
@@ -40,7 +40,7 @@ export const Organisation = () => {
   // function filterByDateWorkshops
   const filterByDateWorkshops = () => {
     if (workshopDate) {
-      Axios.get(`http://localhost:5000/api/workshopsFiltredByDate?startDate=${workshopDate}`, {timeout : 5000})
+      Axios.get(`/api/workshopsFiltredByDate?startDate=${workshopDate}`, {timeout : 5000})
       .then(response => setWorkshops(response.data))
       .catch(error => console.error(error));
     } else {

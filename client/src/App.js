@@ -12,7 +12,7 @@ const App = () => {
   const [numVisitors, setNumVisitors] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/visitors')
+    axios.get('/api/visitors')
       .then(response => setNumVisitors(response.data.count))
       .catch(error => console.error(error));
   }, []);

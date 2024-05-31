@@ -12,7 +12,7 @@ export const FeedbackWorkshop = () => {
 
   useEffect(() => {
     // call the API by Axios to display feedbacks in the collection feedbacks in the PFA DB here
-    Axios.get("http://localhost:5000/api/feedbacksWorkshops")
+    Axios.get("/api/feedbacksWorkshops")
     .then(res => {
       setfeedback(res.data)
     })

@@ -14,7 +14,7 @@ function Login() {
 
   useEffect(() => {
     // call the API by Axios to display formations in the collection formations in the PFA DB here
-    axios.get("http://localhost:5000/api/formations")
+    axios.get("/api/formations")
     .then(res => {
       setformation(res.data)
     })
@@ -25,7 +25,7 @@ function Login() {
 
           useEffect(() => {
               // call the API by Axios to display workshops in the collection workshops in the PFA DB here
-              axios.get("http://localhost:5000/api/workshops")
+              axios.get("/api/workshops")
               .then(res => {
               setworkshop(res.data)
               })
@@ -34,7 +34,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { firstName, lastName, code });
+      const response = await axios.post('/api/login', { firstName, lastName, code });
       if (response.status === 200) {
         window.location.href = '/home';
         window.alert("Welcome to our family");

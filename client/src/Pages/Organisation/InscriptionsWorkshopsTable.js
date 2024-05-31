@@ -6,7 +6,7 @@ const InscriptionsWorkshopsTable = () => {
   
   useEffect(() => {
     // Fetch data from the Express.js API
-    fetch('http://localhost:5000/api/getEnrolledStudentsPerWorkshop')
+    fetch('/api/getEnrolledStudentsPerWorkshop')
       .then(response => response.json())
       .then(data => setInscriptions(data))
       .catch(error => console.error('Error fetching inscriptionsWorkshops:', error));

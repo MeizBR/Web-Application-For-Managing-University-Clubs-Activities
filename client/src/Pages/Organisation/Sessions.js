@@ -12,7 +12,7 @@ export const Sessions = () => {
 
     // useEffect(() => {
     //     // call the API by Axios to display formations in the collection formations in the PFA DB here
-    //     Axios.get("http://localhost:5000/sessions")
+    //     Axios.get("/sessions")
     //     .then(res => {
     //       setSession(res.data)
     //     })
@@ -27,7 +27,7 @@ export const Sessions = () => {
              console.log(formattedDate)
             try {
                 setSession([]);
-                const response = await Axios.get(`http://localhost:5000/api/sessions/${formattedDate}`);
+                const response = await Axios.get(`/api/sessions/${formattedDate}`);
                 setSession(response.data);
             } catch (error) {
                 console.error(error);

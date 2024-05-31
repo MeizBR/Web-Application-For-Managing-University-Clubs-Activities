@@ -13,7 +13,7 @@ export const FormationsPage = () => {
 
   useEffect(() => {
     // call the API by Axios to display formations in the collection formations in the PFA DB here
-    Axios.get("http://localhost:5000/api/formations")
+    Axios.get("/api/formations")
     .then(res => {
       setformation(res.data)
     })

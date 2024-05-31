@@ -13,7 +13,7 @@ export const WorkshopElement = () => {
 
   useEffect(() => {
     Axios
-      .get(`http://localhost:5000/api/workshops/${id}`)
+      .get(`/api/workshops/${id}`)
       .then((res) => setWorkshop(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -40,7 +40,7 @@ export const WorkshopElement = () => {
   // extract the students data
   useEffect(() => {
     Axios
-      .get("http://localhost:5000/api/students")
+      .get("/api/students")
       .then((res) => {
         const codes = res.data.map((student) => student.studentCode);
         const firstnames = res.data.map((student) => student.studentFirstName);
@@ -61,7 +61,7 @@ export const WorkshopElement = () => {
     // Get the inscriptions count from the backend when component mounts
     useEffect(() => {
       if (workshop._id) {
-      Axios.get(`http://localhost:5000/api/workshops/${workshop._id}`)
+      Axios.get(`/api/workshops/${workshop._id}`)
         .then(res => {
           const storedCount = res.data.inscriptionsCount;
           if (storedCount) {
@@ -99,7 +99,7 @@ export const WorkshopElement = () => {
           allowedSections.includes(studentSection) &&
           allowedEmails.includes(studentEmail)
         ) {
-            Axios.post("http://localhost:5000/api/submitAnInscriptionWorkshop", {
+            Axios.post("/api/submitAnInscriptionWorkshop", {
               workshopName : workshop.workshopName,
               workshopId : workshop._id,
               formateurFirstName : workshop.formateurFirstName,

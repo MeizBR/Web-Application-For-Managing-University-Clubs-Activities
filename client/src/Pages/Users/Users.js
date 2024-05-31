@@ -13,7 +13,7 @@ export const Users = () => {
 
   useEffect(() => {
     // call the API by Axios to display students in the collection students in the PFA DB here
-    Axios.get("http://localhost:5000/api/students")
+    Axios.get("/api/students")
     .then(res => {
       setStudents(res.data)
     })
@@ -26,7 +26,7 @@ export const Users = () => {
 
   useEffect(() => {
     // call the API by Axios to display formateurs in the collection formateurs in the PFA DB here
-    Axios.get("http://localhost:5000/api/formateurs")
+    Axios.get("/api/formateurs")
     .then(res => {
       setFormateurs(res.data)
     })

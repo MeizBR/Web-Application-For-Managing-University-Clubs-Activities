@@ -14,7 +14,7 @@ export const WorkshopsPage = () => {
 
   useEffect(() => {
     // call the API by Axios to display workshops in the collection workshops in the PFA DB here
-    Axios.get("http://localhost:5000/api/workshops")
+    Axios.get("/api/workshops")
     .then(res => {
       setworkshop(res.data)
     })

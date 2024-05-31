@@ -12,7 +12,7 @@ export const FeedbackWorkshops = () => {
   // useEffect to make API data extraction synchronous
   useEffect(() => {
     Axios
-      .get("http://localhost:5000/api/workshops")
+      .get("/api/workshops")
       .then((res) => setWorkshop(res.data))
       .catch((err) => console.log(err));
   });
@@ -39,7 +39,7 @@ export const FeedbackWorkshops = () => {
   // extract the students data
   useEffect(() => {
     Axios
-      .get("http://localhost:5000/api/students")
+      .get("/api/students")
       .then((res) => {
         const codes = res.data.map((student) => student.studentCode);
         const firstnames = res.data.map((student) => student.studentFirstName);
@@ -91,7 +91,7 @@ export const FeedbackWorkshops = () => {
             allowedSections.includes(studentSection) &&
             allowedEmails.includes(studentEmail)
           ) {
-              Axios.post("http://localhost:5000/api/submitAWorkshopFeedback", {
+              Axios.post("/api/submitAWorkshopFeedback", {
                     workshopName : workshopName,
                     formateurFirstName : formateurFirstName,
                     formateurLastName : formateurLastName,
@@ -133,7 +133,7 @@ export const FeedbackWorkshops = () => {
 
   // Fetch feedbacks data
  useEffect(() => {
-  Axios.get("http://localhost:5000/api/feedbacksWorkshops")
+  Axios.get("/api/feedbacksWorkshops")
     .then((res) => setFeedbackWorkshop(res.data))
     .catch((err) => console.log(err));
 }, []);
