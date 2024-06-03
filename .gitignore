@@ -7,3 +7,4 @@ crash.log
 *.log
 *.bak
 *.swp
+client/certificate/

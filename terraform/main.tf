@@ -71,7 +71,7 @@ resource "aws_security_group" "pfa_web_app_nsg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["13.48.4.200/30", "41.231.47.41/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   # Allow HTTP from anywhere
@@ -83,13 +83,14 @@ resource "aws_security_group" "pfa_web_app_nsg" {
   }
 
   # Allow HTTPS from anywhere
-#   ingress {
-#     from_port   = 443
-#     to_port     = 443
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
+  # Allow all outbound trafic
   egress {
     from_port   = 0
     to_port     = 0
@@ -116,7 +117,7 @@ resource "aws_network_interface" "pfa_web_app_network_interface" {
 resource "aws_instance" "pfa_web_app_instance" {
   ami           = "ami-0705384c0b33c194c"
   instance_type = "t3.micro"
-  key_name      = "aws-tf"
+  key_name      = "aws-aws"
 
   subnet_id = aws_subnet.pfa_web_app_subnet.id
 
@@ -136,6 +137,8 @@ resource "aws_eip" "pfa_web_app_eip" {
 resource "aws_eip_association" "pfa_web_app_eip_association" {
   instance_id      = aws_instance.pfa_web_app_instance.id
   allocation_id    = aws_eip.pfa_web_app_eip.id
+
+  depends_on = [aws_eip.pfa_web_app_eip]
 }
 
 # Output

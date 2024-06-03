@@ -27,7 +27,7 @@ RUN npm install && npm run build
 # CMD ["npm", "start"]
 
 # Stage 2: Serve the application with NGINX
-FROM nginx:stable-perl as deploy
+FROM nginx:latest as deploy
 
 # Set the working directory
 WORKDIR /usr/share/nginx/html
@@ -40,8 +40,14 @@ COPY --from=build /app/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/nginx/cors.conf /etc/nginx/cors.conf
 COPY --from=build /app/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Expose port 80
+COPY --from=build /app/certificate/739BAFCCB57D7034102C7A8044CA972D.txt /usr/share/nginx/html/.well-known/pki-validation/739BAFCCB57D7034102C7A8044CA972D.txt
+
+COPY --from=build /app/certificate/certificate.crt /etc/ssl/certificate.crt
+COPY --from=build /app/certificate/private.key /etc/ssl/private.key
+
+# Expose port 80 and 443
 EXPOSE 80
+EXPOSE 443
 
 # Start NGINX
 CMD ["nginx", "-g", "daemon off;"]

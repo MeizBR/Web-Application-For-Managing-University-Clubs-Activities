@@ -62,18 +62,19 @@
     # Pull the PFA Web App Frontend Docker Image
     - name: Pull PFA Web App Frontend Docker Image
       community.docker.docker_image:
-        name: "meiezbr/web-application-for-managing-university-clubs-activities_frontend:latest"
+        name: "meiezbr/web-application-for-managing-university-clubs-activities_frontend:ssl-conf"
         source: pull
 
     # Create Frontend containers
     - name: Create Frontend containers
       community.docker.docker_container:
         name: pfa-frontend
-        image: "meiezbr/web-application-for-managing-university-clubs-activities_frontend:latest"
+        image: "meiezbr/web-application-for-managing-university-clubs-activities_frontend:ssl-conf"
         networks:
           - name: "pfa-net"
         ports:
           - "80:80"
+          - "443:443"
         volumes:
           - "/home/ubuntu/certbot:/var/www/certbot/:ro"
         state: started
