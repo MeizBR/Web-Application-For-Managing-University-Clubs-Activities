@@ -19,10 +19,15 @@ services:
     #  - com.prometheus.scrape=true
     #  - com.prometheus.port=9100
 
+  # mongodb exporter
   # mongodb-exporter:
   #   image: bitnami/node-exporter:latest
+  #   container_name: pfa-mongodb-exporter
   #   environment:
-  #     - MONGODB_URI=mongodb://meiezbr:159357@mongodb:27017/admin
+  #     MONGODB_HOST: mongodb
+  #     MONGODB_DATABASE: admin
+  #     MONGODB_USER: meiezbr
+  #     MONGODB_PASSWORD: 159357
   #   ports:
   #     - 9100:9100
   #   deploy:
@@ -31,39 +36,46 @@ services:
   #         memory: 128M
   #   depends_on:
   #     - mongodb
-  #   hostname: mymongodb
+  #   hostname: mongodb
 
+  # prometheus
   # prometheus:
-  #   image: "prom/prometheus" 
+  #   image: "prom/prometheus"
+  #   container_name: pfa-prometheus
   #   ports:
   #     - "9090:9090"  
   #   volumes:
-  #     - ./prometheus:/etc/prometheus  
-  #     - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  
+  #     - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
   #   deploy:
   #     resources:
   #       limits:
   #         memory: 1G
   #   depends_on:
-  #     - api
+  #     - backend
   #     - mongodb
+  #   networks:
+  #     - pfa-net
 
+  # grafana
   # grafana:
   #   image: grafana/grafana
+  #   container_name: pfa-grafana
   #   ports:
   #     - "3001:3000"  
   #   volumes:
   #     - ./grafana:/var/lib/grafana  
   #   environment:
-  #     - GF_SECURITY_ADMIN_PASSWORD=password 
+  #     - GF_SECURITY_ADMIN_PASSWORD=password
   #     - PORT=8000
-  #     - GF_USERS_ALLOW_SIGN_UP=false  
+  #     - GF_USERS_ALLOW_SIGN_UP=false
   #   deploy:
   #     resources:
   #       limits:
   #         memory: 1G
   #   depends_on:
   #     - prometheus
+  #   networks:
+  #     - pfa-net
   
   # backend
   backend:
@@ -82,7 +94,7 @@ services:
       - mongodb
     networks:
       - pfa-net
-    # hostname: mybackendhostname
+    # hostname: backend
     # labels:
     #  - com.prometheus.scrape=true
     #  - com.prometheus.port=5000
@@ -98,7 +110,7 @@ services:
       context: ./client
     ports:
       - "80:80"
-      # - "443:443"
+      - "443:443"
     depends_on:
       - mongodb
       - backend
@@ -108,15 +120,7 @@ services:
       - ./client/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./client/nginx/cors.conf:/etc/nginx/cors.conf:ro
       - ./client/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      # - ./certbot/www/:/var/www/certbot/:ro
-    # hostname: myfrontendhostname
-
-  # certbot
-  # certbot:
-  #   image: certbot/certbot:latest
-  #   volumes:
-  #     - ./certbot/www/:/var/www/certbot/:rw
-  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+    # hostname: frontend
 
 # volumes
 volumes:

@@ -10,10 +10,8 @@ RUN wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/no
     cp node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin/ && \
     rm -rf node_exporter-1.2.2.linux-amd64* 
 
-
 # Expose Node Exporter's default port
 EXPOSE 9100
-
 
 # Start Node Exporter when the container starts
 CMD ["node_exporter"]

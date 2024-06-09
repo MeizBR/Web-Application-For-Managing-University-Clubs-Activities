@@ -40,14 +40,14 @@ COPY --from=build /app/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/nginx/cors.conf /etc/nginx/cors.conf
 COPY --from=build /app/nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=build /app/certificate/739BAFCCB57D7034102C7A8044CA972D.txt /usr/share/nginx/html/.well-known/pki-validation/739BAFCCB57D7034102C7A8044CA972D.txt
+# COPY --from=build /app/certificate/739BAFCCB57D7034102C7A8044CA972D.txt /usr/share/nginx/html/.well-known/pki-validation/739BAFCCB57D7034102C7A8044CA972D.txt
 
-COPY --from=build /app/certificate/certificate.crt /etc/ssl/certificate.crt
-COPY --from=build /app/certificate/private.key /etc/ssl/private.key
+# COPY --from=build /app/certificate/certificate.crt /etc/ssl/certificate.crt
+# COPY --from=build /app/certificate/private.key /etc/ssl/private.key
 
 # Expose port 80 and 443
 EXPOSE 80
-EXPOSE 443
+# EXPOSE 443
 
 # Start NGINX
 CMD ["nginx", "-g", "daemon off;"]

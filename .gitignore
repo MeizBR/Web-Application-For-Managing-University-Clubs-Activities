@@ -1,10 +1,11 @@
 terraform/.terraform/
 terraform/hosts.ini
-*.tfstate
-*.tfstate.*
+terraform/*.tfstate
+terraform/*.tfstate.*
 .terraform.lock.hcl
 crash.log
 *.log
 *.bak
 *.swp
 client/certificate/
+grafana
