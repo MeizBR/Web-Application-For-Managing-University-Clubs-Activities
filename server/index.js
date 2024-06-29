@@ -20,7 +20,13 @@ const cors = require("cors")
 app.use(cors())
 
 // connect VS Code to database
-mongoose.connect(`mongodb://${user}:${password}@${host}:27017/${database}`, {
+// mongoose.connect(`mongodb://${user}:${password}@${host}:27017/${database}`, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+
+// connect to MongoDB Atlas
+mongoose.connect(`mongodb+srv://${user}:${password}@${host}/${database}?retryWrites=true&w=majority&appName=Cluster0`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
