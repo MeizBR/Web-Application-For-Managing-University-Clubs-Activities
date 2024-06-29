@@ -32,7 +32,6 @@ mongoose.connect(`mongodb+srv://${user}:${password}@${host}/${database}?retryWri
 });
 
 /* import the models */
-// from Models
 
 // import Student model
 const StudentModel = require("./models/Student")
