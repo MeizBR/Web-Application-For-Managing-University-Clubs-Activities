@@ -9,3 +9,5 @@ crash.log
 *.swp
 client/certificate/
 grafana
+*.py
+secrets/
