@@ -2,80 +2,91 @@ version: "3.9"
 
 services:
 
-  # database
-  mongodb:
-    image: mongo:latest
-    container_name: pfa-db
+  # nexus arm
+  nexuscon:
+    image: sonatype/nexus3:latest
+    container_name: nexuscon
     ports:
-      - "27017:27017"
+      - "8081:8081"
     volumes:
-      - mongodb_data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: meiezbr
-      MONGO_INITDB_ROOT_PASSWORD: 159357
-    networks:
-      - pfa-net
-    labels:
-     - com.prometheus.scrape=true
-     - com.prometheus.port=9100
-
-  # mongodb exporter
-  mongodb-exporter:
-    image: bitnami/node-exporter:latest
-    container_name: pfa-mongodb-exporter
-    environment:
-      MONGODB_HOST: mongodb
-      MONGODB_DATABASE: admin
-      MONGODB_USER: meiezbr
-      MONGODB_PASSWORD: 159357
-    ports:
-      - 9100:9100
-    deploy:
-      resources:
-        limits:
-          memory: 128M
-    depends_on:
-      - mongodb
-    hostname: mongodb
-
-  # prometheus
-  prometheus:
-    image: "prom/prometheus"
-    container_name: pfa-prometheus
-    ports:
-      - "9090:9090"  
-    volumes:
-      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-    depends_on:
-      - backend
-      - mongodb
+      - nexus-data:/nexus-data
     networks:
       - pfa-net
 
-  # grafana
-  grafana:
-    image: grafana/grafana
-    container_name: pfa-grafana
-    ports:
-      - "3001:3000"  
-    volumes:
-      - ./grafana:/var/lib/grafana  
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=password
-      - PORT=8000
-      - GF_USERS_ALLOW_SIGN_UP=false
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-    depends_on:
-      - prometheus
-    networks:
-      - pfa-net
+  # # database
+  # mongodb:
+  #   image: mongo:latest
+  #   container_name: pfa-db
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: meiezbr
+  #     MONGO_INITDB_ROOT_PASSWORD: 159357
+  #   networks:
+  #     - pfa-net
+  #   labels:
+  #    - com.prometheus.scrape=true
+  #    - com.prometheus.port=9100
+
+  # # mongodb exporter
+  # mongodb-exporter:
+  #   image: bitnami/node-exporter:latest
+  #   container_name: pfa-mongodb-exporter
+  #   environment:
+  #     MONGODB_HOST: mongodb
+  #     MONGODB_DATABASE: admin
+  #     MONGODB_USER: meiezbr
+  #     MONGODB_PASSWORD: 159357
+  #   ports:
+  #     - 9100:9100
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 128M
+  #   depends_on:
+  #     - mongodb
+  #   hostname: mongodb
+
+  # # prometheus
+  # prometheus:
+  #   image: "prom/prometheus"
+  #   container_name: pfa-prometheus
+  #   ports:
+  #     - "9090:9090"  
+  #   volumes:
+  #     - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 1G
+  #   depends_on:
+  #     - backend
+  #     - mongodb
+  #   networks:
+  #     - pfa-net
+
+  # # grafana
+  # grafana:
+  #   image: grafana/grafana
+  #   container_name: pfa-grafana
+  #   ports:
+  #     - "3001:3000"  
+  #   volumes:
+  #     - ./grafana:/var/lib/grafana  
+  #   environment:
+  #     - GF_SECURITY_ADMIN_PASSWORD=password
+  #     - PORT=8000
+  #     - GF_USERS_ALLOW_SIGN_UP=false
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 1G
+  #   depends_on:
+  #     - prometheus
+  #   networks:
+  #     - pfa-net
   
   # backend
   backend:
@@ -86,19 +97,14 @@ services:
     ports:
       - "5000:5000"
     environment:
-      # local database
-      # MONGODB_HOST: mongodb
-      # MONGODB_DATABASE: admin
-      # MONGODB_USER: meiezbr
-      # MONGODB_PASSWORD: 159357
-
       # cloud database
       MONGODB_HOST_FILE: /run/secrets/mongodb_host
       MONGODB_DATABASE_FILE: /run/secrets/mongodb_database
       MONGODB_USER_FILE: /run/secrets/mongodb_user
       MONGODB_PASSWORD_FILE: /run/secrets/mongodb_password
     depends_on:
-      - mongodb
+      # - mongodb
+      - nexuscon
     networks:
       - pfa-net
     hostname: backend
@@ -124,7 +130,8 @@ services:
       - "80:80"
       # - "443:443"
     depends_on:
-      - mongodb
+      # - mongodb
+      - nexuscon
       - backend
     networks:
       - pfa-net
@@ -146,7 +153,9 @@ secrets:
 
 # volumes
 volumes:
-  mongodb_data:
+#   mongodb_data:
+  nexus-data:
+    external: true
 
 # networks
 networks:

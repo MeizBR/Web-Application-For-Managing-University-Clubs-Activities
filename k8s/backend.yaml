@@ -17,6 +17,7 @@ spec:
       containers:
       - name: pfa-backend-app
         image: meiezbr/web-application-for-managing-university-clubs-activities_backend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
         env:
@@ -48,7 +49,7 @@ metadata:
 spec:
   selector:
     app: pfa-backend-app
-  type: LoadBalancer  
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 5000
